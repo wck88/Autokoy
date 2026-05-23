@@ -1,8 +1,4 @@
-⚠️ 严正声明 (License & Copyright)
-本项目采用 CC BY-NC 4.0 协议进行分发。
-无论你是直接 Fork、修改源码还是重新分发，都必须保留原作者的署名，且严禁用于任何商业牟利行为。一经发现侵权，作者保留追究责任的权利。
-
-# 🚀 科学上网节点极速部署指南 (Sing-box + Cloudflare Tunnel)
+# 🚀 科学上网节点极速部署指南 (Sing-box + Cloudflare Tunnel)  Koyeb
 
 本项目提供了一个基于 Docker 容器的轻量级、高隐匿性科学上网节点部署方案。通过集成 `sing-box` 和 `cloudflared`，你可以轻松地在各类云平台（如 Koyeb、Render 等）或个人 VPS 上一键构建安全隧道。
 
@@ -32,7 +28,7 @@
     * 登录 [Cloudflare Zero Trust](https://dash.teams.cloudflare.com/) 面板。
     * 导航至 **Networks** -> **Tunnels**，创建一个新的 Tunnel。
     * 保存生成的 **Tunnel Token** (即 `ARGO_TOKEN`)。
-    * 为该 Tunnel 配置一个 Public Hostname（例如 `proxy.yourdomain.com`），并将服务指向 `http://localhost:8080`。
+    * 为该 Tunnel 配置一个 Public Hostname（例如 `proxy.yourdomain.com`），并将服务指向 `**http://localhost:8050**`。
 
 2.  **生成 UUID**:
     * 使用在线工具或命令行（如 `uuidgen`）生成一个符合标准格式的 UUID（例如：`123e4567-e89b-12d3-a456-426614174000`）。
@@ -45,10 +41,12 @@
 | :--- | :--- | :--- |
 | `UUID` | 你的节点连接密码 | `你的随机UUID` |
 | `ARGO_TOKEN` | Cloudflare Tunnel 的 Token | `eyJh...` |
+| `DOMAIN`|隧道域名|
+|`PORT`|8080|
 
 uuid生成器 [点击生成](https://99688988.xyz/uuid-generator/)
 
-*(注：部署端口默认为 `8080`，无需修改)*
+Koyeb 改端口为：8080  
 
 ### 客户端连接
 
@@ -64,21 +62,22 @@ uuid生成器 [点击生成](https://99688988.xyz/uuid-generator/)
 快捷分享链接 (URI 格式) 示例
 
 如果你熟悉直接拼接链接，它大概长这个样子（把中括号里的内容替换成你的真实信息）：
-vless://你的UUID@你的Tunnel域名（或者优选域名）:443?encryption=none&security=tls&sni=你的Tunnel域名&insecure=0&allowInsecure=0&type=ws&host=你的Tunnel域名&path=%2Fvless#Railway-Singbox
+vless://你的UUID@你的Tunnel域名（或者优选域名）:443?encryption=none&security=tls&sni=你的Tunnel域名&insecure=0&allowInsecure=0&type=ws&host=你的Tunnel域名&path=%2Fvless#Koyeb-Singbox
 
 如果速度太慢在 地址 (Address) 可换成优选域名 [点击获取优选域名](https://kjgx668.blogspot.com/2023/08/cloudflare-ip-cloudflare-cf.html)
 
----
+**登录 Cloudflare Zero Trust 控制台。**
+**原来可能是：http://localhost:8080    请修改为http://localhost:8050**
 
-## 进阶玩法：解锁流媒体与降低风控
+## 进阶玩法：保活
 
-如果你遇到节点 IP 风控过高或无法访问 ChatGPT/Netflix 的情况，可以通过修改 `config.json` 加入 Cloudflare WARP 出站。
+重新提交并测试
+把修改后的代码推送到 GitHub，等待 GitHub Actions 编译并重新发布。
 
-具体方法：使用 WGCF 提取 WARP 的 `PrivateKey` 和 `Address` (IPv4)，将其填入 `config.json` 的 `outbounds` -> `warp` 标签下，系统即可自动将流媒体流量分流至纯净的 WARP 节点。详细教程可参考 [相关配置指南](#)。
+重新部署完成后，再次刷新 https://app-name-username.koyeb.app/。
 
----
-> **Disclaimer**: 本项目仅供学习和交流网络协议之用，请在遵守当地法律法规的前提下使用。
->
-> ⚠️ 严正声明 (License & Copyright)
-本项目采用 CC BY-NC 4.0 协议进行分发。
-无论你是直接 Fork、修改源码还是重新分发，都必须保留原作者的署名，且严禁用于任何商业牟利行为。一经发现侵权，作者保留追究责任的权利。
+此时页面应该能正常打开，并显示：Keep-Alive Server OK。
+
+只要这个页面能打开，你的 sing-box 代理节点（通过隧道或者直连）就能正常恢复连接。
+
+去 UptimeRobot 官网注册一个免费账号，添加一个 HTTP(s) 监控，网址填入你的这个 koyeb.app 链接，频率设置为 5分钟。
