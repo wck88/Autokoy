@@ -68,7 +68,7 @@ vless://你的UUID@你的Tunnel域名（或者优选域名）:443?encryption=non
 如果速度太慢在 地址 (Address) 可换成优选域名 [点击获取优选域名](https://kjgx668.blogspot.com/2023/08/cloudflare-ip-cloudflare-cf.html)
 
 **登录 Cloudflare Zero Trust 控制台。**
-**原来可能是：http://localhost:8080    请修改为http://localhost:8050**
+**原来可能是：http://localhost:8080    请修改为http://localhost:8085**
 
 ## 进阶玩法：保活
 
