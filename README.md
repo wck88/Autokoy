@@ -28,7 +28,7 @@
     * 登录 [Cloudflare Zero Trust](https://dash.teams.cloudflare.com/) 面板。
     * 导航至 **Networks** -> **Tunnels**，创建一个新的 Tunnel。
     * 保存生成的 **Tunnel Token** (即 `ARGO_TOKEN`)。
-    * 为该 Tunnel 配置一个 Public Hostname（例如 `proxy.yourdomain.com`），并将服务指向 `**http://localhost:8050**`。
+    * 为该 Tunnel 配置一个 Public Hostname（例如 `proxy.yourdomain.com`），并将服务指向 `**http://localhost:8085**`。
 
 2.  **生成 UUID**:
     * 使用在线工具或命令行（如 `uuidgen`）生成一个符合标准格式的 UUID（例如：`123e4567-e89b-12d3-a456-426614174000`）。
