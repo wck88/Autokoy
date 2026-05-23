@@ -23,9 +23,9 @@ echo "=================================================================="
 echo "🚀 专属容器部署成功！您的 VLESS 万能快捷导入节点如下："
 echo "------------------------------------------------------------------"
 if [ -n "$UUID" ] && [ -n "$DOMAIN" ]; then
-    echo "vless://${UUID}@${DOMAIN}:443?encryption=none&security=tls&sni=${DOMAIN}&type=ws&host=${DOMAIN}&path=%2Fvless#🇸🇬🌍🇸🇬新加坡备用_Railway"
+    echo "vless://${UUID}@${DOMAIN}:443?encryption=none&security=tls&sni=${DOMAIN}&type=ws&host=${DOMAIN}&path=%2Fvless#🇫🇷🌍🇫🇷法国备用 koyeb"
     echo "非TLS，用80端口，节点如下："
-    echo "vless://${UUID}@www.shopify.com:80?encryption=none&security=none&sni=${DOMAIN}&type=ws&host=${DOMAIN}&path=%2Fvless#🇸🇬🌍🇸🇬新加坡备用_Railway"
+    echo "vless://${UUID}@www.shopify.com:80?encryption=none&security=none&sni=${DOMAIN}&type=ws&host=${DOMAIN}&path=%2Fvless🇫🇷🌍🇫🇷法国备用 koyeb"
 else
     echo "[提示] 如果需要自动输出成品链接，请在环境变量里补全 DOMAIN 参数"
 fi
